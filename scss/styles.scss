@@ -643,7 +643,7 @@ footer {
 
 .project {
     position: relative;
-    max-width: 1250px;
+    max-width: 1000px;
     margin: 0 auto 30px auto;
     overflow: hidden;
     background: #fff;
@@ -656,7 +656,9 @@ footer {
     object-fit: contain;  /* Add the object-fit: contain property */
 
     .img-rescale{
-        width: 100%;
+        width: auto;
+        max-width: 100%;
+        max-height: 350px;
     }
 }
 
