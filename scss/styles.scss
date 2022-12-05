@@ -643,7 +643,7 @@ footer {
 
 .project {
     position: relative;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto 30px auto;
     overflow: hidden;
     background: #fff;
@@ -652,13 +652,22 @@ footer {
 
 .project-image {
     float: left;
+    width: 50%;
+    object-fit: contain;  /* Add the object-fit: contain property */
+
+    .img-rescale{
+        width: 100%;
+    }
 }
+
+
 
 .project-info {
     position: absolute;
     top: 50%;
+    //left: 100px;
     transform: translateY(-50%);
-    margin-left: 300px;
+    margin-left: 50%;
     padding: 15px;
 
     h3 {
@@ -687,6 +696,8 @@ footer {
 #more-projects {
     display: none;
 }
+
+
 
 /*
     -------------------------------
@@ -997,17 +1008,45 @@ footer {
         }
     }
 
+    // .project-image {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     z-index: 1;
+    //     width: auto;
+    //     height: 20px;
+    // }
     .project-image {
-        display: none;
+        float: left;
+        width: 100%;
+        object-fit: contain;  /* Add the object-fit: contain property */
+    
+        .img-rescale{
+            width: 100%;
+        }
     }
-
+    
     .project-info {
+        display: inline-block;
         position: relative;
-        margin: 0;
+        margin: 0px 0px 0px 0px;  /* Add a margin to the top of the element */
         padding: 30px 15px;
         top: auto;
         transform: none;
+        z-index: 2;
     }
+
+    // .project-image {
+    //     display: none;
+    // }
+
+    // .project-info {
+    //     position: relative;
+    //     margin: 0;
+    //     padding: 30px 15px;
+    //     top: auto;
+    //     transform: none;
+    // }
 
     footer {
         text-align: center;
