@@ -29,22 +29,23 @@
     </header> -->
     <!-- End header -->
 
-    <div id="lead" style="background-image: url(../images/projects/swarm/InspectionGif.gif);">...</div>
-    <div id="lead-content">
-        <h1>A Swarm of Aircraft Inspection Drones</h1>
-        <h2>My BSc. graduation project</h2>
-        <a href="index.html" class="btn-rounded-white">Back to homepage</a>
-    </div>
-    <!-- End #lead-content -->
+    <div id="lead" style="background-image: url(../images/projects/swarm/InspectionGif.gif);">
+        <div id="lead-content">
+            <h1>A Swarm of Aircraft Inspection Drones</h1>
+            <h2>My BSc. graduation project</h2>
+            <a href="index.html" class="btn-rounded-white">Back to homepage</a>
+        </div>
+        <!-- End #lead-content -->
 
-    <!-- <div id="lead-overlay"></div> -->
+        <!-- <div id="lead-overlay"></div> -->
 
-    <div id="lead-down">
-        <span>
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-        </span>
-        <!-- </div> -->
-        <!-- End #lead-down -->
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+            <!-- </div> -->
+            <!-- End #lead-down -->
+        </div>
     </div>
     <!-- End #lead -->
     <div id="textbody">
@@ -54,26 +55,24 @@
                     <h1>Summary</h1>
                     <p>
                         As my graduation project for the aerospace bachelor, I worked on a project with a team of
-                        Aerospace students to develop a
-                        simulation of
-                        a swarm of inspection drones for aircraft inspection using Unity. I was responsible for
+                        Aerospace students to develop a swarm of inspection drones for aircraft inspection.
+                        I was responsible for
                         simulating
                         the
                         inspection performed by the drones, which included full 6DOF drone kinematics, outer loop drone
                         control,
                         drone camera simulations, pathfinding, and collision avoidance. The project was awarded the 2500
                         euro
-                        NLF Aerospace WO Technical Award and we are continuing our work on the project outisde of our
+                        NLF Aerospace WO Technical Award and we are continuing to work on the project outisde of our
                         studies.
                     <p>
 
                     <p>
-                        The main strong point of the simulations and algorithms we immplemented were their flexibility.
+                        The main strong point of the simulations and algorithms we implemented were their flexibility.
                         Although the project was focused on
                         aircraft
                         inspection, the algorithms we used were designed to be as general as possible, so the simulation
-                        could
-                        be used for the inspection of any 3D object, such as a wind turbine, rocket or a bridge.
+                        could be used for the inspection of any 3D object, such as a wind turbine, rocket or a bridge.
                     </p>
 
                     <div class="image-container">
@@ -90,7 +89,7 @@
                     </p>
 
                     <figure style="float: right;">
-                        <img src="images/projects/swarm/VR.gif"/>
+                        <img src="images/projects/swarm/VR.gif" />
                     </figure>
 
                     <p>
@@ -114,7 +113,8 @@
                     </p>
 
                     <p>
-                        Overall, the project was a great learning experience and allowed me to apply my knowledge of
+                        Overall, the project was a fun experience with a great team and allowed me to apply my knowledge
+                        of
                         drone
                         kinematics, control, optimization and pathfinding to a real-world problem. The final simulation,
                         which can be
@@ -123,47 +123,27 @@
                         collision
                         avoidance.
                     </p>
-
-                    
-
                 </div>
 
                 <div>
                     <h1>More details</h1>
                     <p>
-                        Three weeks ago nine other Aerospace students and I finished our Design Synthesis Exercise of a
-                        Swarm of Inspection Drones For Aircraft Inspection. In the last part of this 10-week exercise, I
-                        worked on simulating the inspection performed by the drones in Unity. This simulation featured
-                        full
-                        6DOF drone kinematics, outer loop drone control, drone camera simulations, pathfinding and
-                        collision
-                        avoidance. The final simulation can be viewed in Virtual Reality where the observer can walk
-                        around
-                        the aircraft while the inspection is being performed by the drones. The drones then also avoid
-                        this
-                        observer in real-time as can be seen below:
-                    </p>
-
-                    <p>
-                        One of the aspects of the simulation that I am most proud of is its generality. Although the
-                        scope
-                        of the project was focused on the inspection of aircraft for maintenance, the used algorithms
-                        were
-                        selected and implemented to be as general as possible. This means that the simulation can also
-                        be
-                        used to simulate the drone inspection of any 3D object, be it a wind turbine, a Falcon 9 or a
-                        bridge. I will now walk through the most interesting parts of the simulation in greater detail.
+                        I will now walk through the most interesting parts of the simulation in greater detail, touching
+                        on
+                        the most interesting and challenging parts. First, I will discuss the task distrubution over the
+                        drones
+                        and the pathfinding algorithms used to guide them. Then, I will discuss the collision avoidance
+                        system and the drone control.
+                        Finally, I will discuss some specific details about the simulation itself.
                     </p>
 
                     <h2>Generating the picture positions</h2>
                     <p>
-                        Starting from the 3D model of the aircraft that has to be inspected, how the drones will inspect
-                        this
-                        aircraft must be determined. First, it must be determined which drones will take pictures at
-                        which
+                        Starting from the 3D model of the aircraft that has to be inspected, it has to be determined how
+                        the drones will inspect
+                        this aircraft. First, it must be determined which drones will take pictures at which
                         locations. In distributing these picture locations, the number of pictures and the overlap
-                        between
-                        the
+                        between the
                         pictures has to be minimised while keeping the coverage of the aircraft as large as possible.
                         This
                         problem is further complicated because there are two drone types with different camera types
@@ -191,6 +171,8 @@
                         indicate picture positions for a smaller drone with an upward gimballing camera.
                     </p>
 
+                    <img src="images/projects/swarm/Picture positions.PNG" class="image-width" style="width: 55%;" />
+
                     <h2>Drone routing</h2>
                     <p>
                         The next problem is distributing these picture locations over the drones while minimising the
@@ -208,6 +190,8 @@
                         paths are shown in the picture below:
                     </p>
 
+                    <img src="images/projects/swarm/AstarGraph.PNG" class="image-width" style="width: 55%;" />
+
                     <p>
                         This pathfinding does not take into account the possible collisions between the drones. This was
                         an explicit choice in the design process, the collision avoidance system between the drones is
@@ -215,6 +199,9 @@
                     </p>
 
                     <h2>Drone collision avoidance</h2>
+
+                    <img src="images/projects/swarm/ORCADrones.png" class="image-width" style="width: 49%;" />
+
                     <p>
                         Optimal Reciprocal Collision Avoidance (ORCA) was chosen as the collision avoidance system for
                         the drones. This is a very powerful and intuitive algorithm, and I had great fun implementing it
@@ -238,10 +225,21 @@
                         the next section.
                     </p>
 
+                    <div class="image-container">
+                        <img src="images/projects/swarm/ORCADebugTwo.png" class="image-width" style="width: 49%;" />
+                        <img src="images/projects/swarm/ORCASphereCrop.png" class="image-width" style="width: 49%;" />
+                    </div>
+
+
                     <p>
                         The following video shows the decentralised collision avoidance of 40 drones trying to cross a
                         circle (note the emergent symmetries).
                     </p>
+
+                    <iframe style="display: block; margin-left: auto; margin-right: auto;" width="840" height="472"
+                        src="https://www.youtube.com/embed/JSlEjPGbT4I" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
 
                     <h2>Drone quaternion control</h2>
                     <p>
@@ -256,40 +254,110 @@
                         small drones circling each other (while not colliding), diving in between the hangar beams and
                         then the large drone diving almost vertically to the ground. When the small drones provided
                         space for each other to pull out of their respective dives at the end of the video, I knew this
-                        was a truly powerful algorithm. This looks like a budget Top Gun with drones.
+                        was a truly powerful algorithm.
                     </p>
 
+                    <!-- <div class="auto-resizable-iframe">
+                        <div>
+                          <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/p1HQJg5oVdI"></iframe>
+                        </div>
+                      </div> -->
+
+                    <iframe style="display: block; margin-left: auto; margin-right: auto;" width="840" height="472"
+                        src="https://www.youtube.com/embed/p1HQJg5oVdI" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+
+                    <h2>Unity simulation</h2>
+
                     <p>
-                        All the elements discussed previously were implemented in Unity. Below is a video showing the
-                        complete simulation. I chose to implement the simulation in the Unity High Definition Rendering
+                        All the elements discussed previously were implemented in Unity. I chose to implement the
+                        simulation in the Unity High Definition Rendering
                         Pipeline (HDRP). While this was a tremendous pain to get working correctly, the end result more
                         than made up for that. One of the features made possible using the HDRP was the projection of
-                        the pictures taken by the drones onto the mesh of the aircraft. Besides this, HDRP has also come
+                        the pictures taken by the drones onto the mesh of the aircraft. Besides this HDRP has also come
                         a long way in performance for VR and now runs smoothly on a laptop RTX 2080.
                     </p>
 
                     <p>
-                        Another function of the Unity simulation is headless running, where the simulation is run
-                        without rendering. This allowed us to investigate not just the performance of a single swarm
-                        configuration but to explore a large landscape of drone combinations:
+                        Another function of the Unity simulation is headless running, where the simulation is executed
+                        without rendering. We ran thousands of headless simulations on our laptops, checking the
+                        reliability of the system and the variance of performance variables over multiple inspections.
+                        Furthermore,
+                        these simulations also allowed us to investigate not
+                        just the performance of a single swarm
+                        configuration but to explore a large set of permutations of possible swarm combinations:
                     </p>
 
+                    <img src="images/projects/swarm/SystemCostVsDronesCustom.png" class="image-width"
+                        style="width: 49%;" />
+
+                    <h2>My experience working on this project</h2>
                     <p>
-                        My experience working on this project
-                        Working on the simulation and the whole DSE has been an enjoyable experience. I learned a lot
-                        and it was fun to see the development of this project from start to finish. Below is more
-                        information about the whole project. Feel free to contact me for any more information.
-                    </p>
-
-                    <h2>Continuation and awards</h2>
+                        Working on the simulation and the DSE as a whole has been an extremely enjoyable experience. 
+                        I am very grateful for our amazing team and mentors. 
+                        It was also very motivating to recieve so much enthousiasm and recognition for the project. 
+                        Below are some pictures from our presentation
+                        at the Development Center for Maintenance of Composites (DCMC) and the NLF award ceremony.
                     <p>
 
-                    </p>
+                        <div class="image-container" style="width: 95%;">
+                            <img src="images/projects/swarm/dcmc.jpg" class="image-width" style="width: 50%;" />
+                            <img src="images/projects/swarm/win.jpg" class="image-width" style="width: 45%;" />
+                        </div>
+    
                 </div>
             </div>
         </div>
     </div>
-    <!-- End #about -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2022</span> Servaas Clerckx
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/" target="_blank"><i class="fa fa-github"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/" target="_blank"><i class="fa fa-stack-overflow"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/" target="_blank"><i class="fa fa-linkedin"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
 </body>
 
 </html>
