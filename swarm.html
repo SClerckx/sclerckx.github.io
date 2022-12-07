@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div> -->
+    <!-- End #mobile-menu-toggle -->
+    <!-- <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <a href="index.html">Back to the home page</a>
+        </ul>
+    </header> -->
+    <!-- End header -->
+
+    <div id="lead" style="background-image: url(../images/projects/swarm/InspectionGif.gif);">...</div>
+    <div id="lead-content"> 
+        <h1>A Swarm of Aircraft Inspection Drones</h1>
+        <h2>My Bsc. graduation project</h2>
+        <a href="index.html" class="btn-rounded-white">Back to homepage</a>
+    </div>
+    <!-- End #lead-content -->
+
+    <!-- <div id="lead-overlay"></div> -->
+
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        <!-- </div> -->
+    <!-- End #lead-down -->
+    </div>
+    <!-- End #lead -->
+    <div id="textbody">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h1>Summary</h1>
+                    <p>
+                        In the last 10 weeks, I worked on a project with a team of Aerospace students to develop a
+                        simulation of
+                        a swarm of inspection drones for aircraft inspection using Unity. I was responsible for
+                        simulating
+                        the
+                        inspection performed by the drones, which included full 6DOF drone kinematics, outer loop drone
+                        control,
+                        drone camera simulations, pathfinding, and collision avoidance.
+
+                        One of the highlights of the simulation was its generality. Although the project was focused on
+                        aircraft
+                        inspection, the algorithms we used were designed to be as general as possible, so the simulation
+                        could
+                        be used for the inspection of any 3D object, such as a wind turbine or a bridge.
+
+                        One of the challenges we faced was determining the locations where the drones would take
+                        pictures.
+                        We
+                        solved this problem using two intertwined algorithms. The first algorithm distributed the global
+                        locations of the pictures around the aircraft, and the second fine-tuned the specific position
+                        and
+                        angle
+                        of each picture. The resulting distribution around a Boeing 757 can be seen below, with green
+                        dots
+                        indicating the positions of the larger drone type, and blue dots indicating the positions of the
+                        smaller
+                        drone type.
+
+                        [Insert Image]
+
+                        Another challenge was distributing the picture locations among the drones to minimize inspection
+                        time.
+                        This is known as the Multiple Traveling Salesmen Problem (MTSP), and we solved it using a
+                        real-time
+                        greedy algorithm. We then used an A* algorithm on a 3D graph to construct the routes between the
+                        waypoints.
+
+                        Finally, we implemented an Optimal Reciprocal Collision Avoidance (ORCA) system for the drones
+                        to
+                        avoid
+                        collisions with each other and any obstacles in their environment. The ORCA system was able to
+                        resolve
+                        conflicts in real-time and allowed the drones to move safely around the aircraft and the
+                        observer.
+
+                        Overall, the project was a great learning experience and allowed me to apply my knowledge of
+                        drone
+                        kinematics, control, and pathfinding to a real-world problem. The final simulation, which can be
+                        viewed
+                        in Virtual Reality, shows the inspection being performed by the drones and their real-time
+                        collision
+                        avoidance.
+
+                        [Insert Image]
+                    </p>
+                </div>
+
+                <div>
+                    <h1>More details</h1>
+                    <p>
+                        Three weeks ago nine other Aerospace students and I finished our Design Synthesis Exercise of a
+                        Swarm of Inspection Drones For Aircraft Inspection. In the last part of this 10-week exercise, I
+                        worked on simulating the inspection performed by the drones in Unity. This simulation featured
+                        full
+                        6DOF drone kinematics, outer loop drone control, drone camera simulations, pathfinding and
+                        collision
+                        avoidance. The final simulation can be viewed in Virtual Reality where the observer can walk
+                        around
+                        the aircraft while the inspection is being performed by the drones. The drones then also avoid
+                        this
+                        observer in real-time as can be seen below:
+                    </p>
+
+                    <p>
+                        One of the aspects of the simulation that I am most proud of is its generality. Although the
+                        scope
+                        of the project was focused on the inspection of aircraft for maintenance, the used algorithms
+                        were
+                        selected and implemented to be as general as possible. This means that the simulation can also
+                        be
+                        used to simulate the drone inspection of any 3D object, be it a wind turbine, a Falcon 9 or a
+                        bridge. I will now walk through the most interesting parts of the simulation in greater detail.
+                    </p>
+
+                    <h2>Generating the picture positions</h2>
+                    <p>
+                        Starting from the 3D model of the aircraft that has to be inspected, how the drones will inspect
+                        this
+                        aircraft must be determined. First, it must be determined which drones will take pictures at
+                        which
+                        locations. In distributing these picture locations, the number of pictures and the overlap
+                        between
+                        the
+                        pictures has to be minimised while keeping the coverage of the aircraft as large as possible.
+                        This
+                        problem is further complicated because there are two drone types with different camera types
+                        with
+                        different properties. These properties, such as the resolution and gimbal limits, constrain the
+                        allowed
+                        picture positions.
+                    </p>
+
+                    <p>
+                        This distribution problem was solved using two intertwined algorithms, one which distributes the
+                        global locations of the pictures around the aircraft and one which fine-tunes the specific
+                        position
+                        and angle of just one picture. The global algorithm performs multiple iterative sweeps of the
+                        aircraft, during which the local algorithm optimises a mathematical scoring function using a
+                        greedy
+                        algorithm. The score of a given picture position takes into account how much of the surface is
+                        covered, the overlap with other pictures, the angle to the normal of the surface etc.
+                    </p>
+
+                    <p>
+                        The resulting distribution around a Boeing 757 can be seen below. The green dots indicate
+                        picture
+                        positions for a larger drone type (which has a downward gimballing camera), while the blue dots
+                        indicate picture positions for a smaller drone with an upward gimballing camera.
+                    </p>
+
+                    <h2>Drone routing</h2>
+                    <p>
+                        Overall, the project was a great learning experience and allowed me to apply my knowledge of
+                        drone
+                        kinematics, control, and pathfinding to a real-world problem. The final simulation, which can be
+                        viewed in Virtual Reality, shows the inspection being performed by the drones and their
+                        real-time
+                        collision avoidance.
+
+                        [Insert Image]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End #about -->
+</body>
+
+</html>
