@@ -30,21 +30,21 @@
     <!-- End header -->
 
     <div id="lead" style="background-image: url(../images/projects/swarm/InspectionGif.gif);">...</div>
-    <div id="lead-content"> 
+    <div id="lead-content">
         <h1>A Swarm of Aircraft Inspection Drones</h1>
-        <h2>My Bsc. graduation project</h2>
+        <h2>My BSc. graduation project</h2>
         <a href="index.html" class="btn-rounded-white">Back to homepage</a>
     </div>
     <!-- End #lead-content -->
 
     <!-- <div id="lead-overlay"></div> -->
 
-        <div id="lead-down">
-            <span>
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </span>
+    <div id="lead-down">
+        <span>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </span>
         <!-- </div> -->
-    <!-- End #lead-down -->
+        <!-- End #lead-down -->
     </div>
     <!-- End #lead -->
     <div id="textbody">
@@ -53,43 +53,57 @@
                 <div>
                     <h1>Summary</h1>
                     <p>
-                        In the last 10 weeks, I worked on a project with a team of Aerospace students to develop a
+                        As my graduation project for the aerospace bachelor, I worked on a project with a team of
+                        Aerospace students to develop a
                         simulation of
                         a swarm of inspection drones for aircraft inspection using Unity. I was responsible for
                         simulating
                         the
                         inspection performed by the drones, which included full 6DOF drone kinematics, outer loop drone
                         control,
-                        drone camera simulations, pathfinding, and collision avoidance.
+                        drone camera simulations, pathfinding, and collision avoidance. The project was awarded the 2500
+                        euro
+                        NLF Aerospace WO Technical Award and we are continuing our work on the project outisde of our
+                        studies.
+                    <p>
 
-                        One of the highlights of the simulation was its generality. Although the project was focused on
+                    <p>
+                        The main strong point of the simulations and algorithms we immplemented were their flexibility.
+                        Although the project was focused on
                         aircraft
                         inspection, the algorithms we used were designed to be as general as possible, so the simulation
                         could
-                        be used for the inspection of any 3D object, such as a wind turbine or a bridge.
+                        be used for the inspection of any 3D object, such as a wind turbine, rocket or a bridge.
+                    </p>
 
-                        One of the challenges we faced was determining the locations where the drones would take
-                        pictures.
-                        We
-                        solved this problem using two intertwined algorithms. The first algorithm distributed the global
-                        locations of the pictures around the aircraft, and the second fine-tuned the specific position
-                        and
-                        angle
-                        of each picture. The resulting distribution around a Boeing 757 can be seen below, with green
-                        dots
-                        indicating the positions of the larger drone type, and blue dots indicating the positions of the
-                        smaller
-                        drone type.
+                    <div class="image-container">
+                        <img src="images/homepage/combined.gif" class="image-width" style="width: 49%;" />
+                        <img src="images/projects/swarm/inspectionGate.gif" class="image-width" style="width: 49%;" />
+                    </div>
 
-                        [Insert Image]
+                    <p>
+                        One of the challenges we faced was determining the optimal locations where the drones would take
+                        pictures. We solved this optimization problem using two intertwined algorithms. The first
+                        algorithm
+                        distributed the global locations of the pictures around the aircraft, and the second fine-tuned
+                        the specific position and angle of each picture.
+                    </p>
 
+                    <figure style="float: right;">
+                        <img src="images/projects/swarm/VR.gif"/>
+                    </figure>
+
+                    <p>
                         Another challenge was distributing the picture locations among the drones to minimize inspection
                         time.
                         This is known as the Multiple Traveling Salesmen Problem (MTSP), and we solved it using a
                         real-time
-                        greedy algorithm. We then used an A* algorithm on a 3D graph to construct the routes between the
+                        greedy algorithm and a global genetic algorithm. We then used A* on a 3D graph to
+                        construct the routes between the generated
                         waypoints.
+                    </p>
 
+                    <p>
                         Finally, we implemented an Optimal Reciprocal Collision Avoidance (ORCA) system for the drones
                         to
                         avoid
@@ -97,17 +111,21 @@
                         resolve
                         conflicts in real-time and allowed the drones to move safely around the aircraft and the
                         observer.
+                    </p>
 
+                    <p>
                         Overall, the project was a great learning experience and allowed me to apply my knowledge of
                         drone
-                        kinematics, control, and pathfinding to a real-world problem. The final simulation, which can be
+                        kinematics, control, optimization and pathfinding to a real-world problem. The final simulation,
+                        which can be
                         viewed
                         in Virtual Reality, shows the inspection being performed by the drones and their real-time
                         collision
                         avoidance.
-
-                        [Insert Image]
                     </p>
+
+                    
+
                 </div>
 
                 <div>
@@ -175,14 +193,97 @@
 
                     <h2>Drone routing</h2>
                     <p>
-                        Overall, the project was a great learning experience and allowed me to apply my knowledge of
-                        drone
-                        kinematics, control, and pathfinding to a real-world problem. The final simulation, which can be
-                        viewed in Virtual Reality, shows the inspection being performed by the drones and their
-                        real-time
-                        collision avoidance.
+                        The next problem is distributing these picture locations over the drones while minimising the
+                        inspection time. This problem is known as a Multiple Traveling Salesmen Problem (MTSP). Due to
+                        the project's time constraints, the simulation was performed using a real-time greedy algorithm
+                        on the drones. This algorithm considered factors such as the drone density at a given picture
+                        position, the distance to the picture and how closely the camera was already gimballed to that
+                        desired picture position
+                    </p>
 
-                        [Insert Image]
+                    <p>
+                        With the waypoints the drones have to reach now known, the routes between those points were
+                        constructed using a simple A* algorithm on a 3D graph (shoutout to Aron Granberg's amazing 2D A*
+                        pathfinding project on which this code is based). The (simplified) graph and the resulting drone
+                        paths are shown in the picture below:
+                    </p>
+
+                    <p>
+                        This pathfinding does not take into account the possible collisions between the drones. This was
+                        an explicit choice in the design process, the collision avoidance system between the drones is
+                        responsible for conflict resolution.
+                    </p>
+
+                    <h2>Drone collision avoidance</h2>
+                    <p>
+                        Optimal Reciprocal Collision Avoidance (ORCA) was chosen as the collision avoidance system for
+                        the drones. This is a very powerful and intuitive algorithm, and I had great fun implementing it
+                        and playing with it.
+                    </p>
+
+                    <p>
+                        The main advantage of ORCA is that it is entirely decentralized, so no communication is required
+                        between the drones. The algorithm also scales very well with an increasing number of agents and
+                        is computationally cheap. The algorithm works with Velocity Obstacles which are forbidden
+                        regions in the velocity space where the drones cannot place their relative velocities. In the
+                        pictures on the right, you can see them visualised in the simulation as cones. If you doubt
+                        whether this algorithm would work in real life, it has been experimentally validated in the
+                        literature on real drones in real-time using just camera sensors (3-D Reciprocal Collision
+                        Avoidance on Physical Quadrotor Helicopters with On-Board Sensing for Relative Positioning)
+                        In implementing this algorithm for the simulation, I used (to the best of my knowledge) two
+                        novel solutions to make the algorithm simpler to implement and computationally cheaper. The
+                        algorithm as implemented can make the drones avoid collisions both with complex stationary
+                        objects and with other drones. The static object avoidance surprised me with its power in
+                        letting the drone navigate tight spaces, as shown below or in the full hangar, as is shown in
+                        the next section.
+                    </p>
+
+                    <p>
+                        The following video shows the decentralised collision avoidance of 40 drones trying to cross a
+                        circle (note the emergent symmetries).
+                    </p>
+
+                    <h2>Drone quaternion control</h2>
+                    <p>
+                        To control the drones, I implemented a heap of PID controllers where the most interesting thing
+                        is the attitude controller. The drones are modelled down to the forces and torques acting on
+                        them. To control the attitude of the drone on the torque level, I implemented a quaternion
+                        controller. I chose quaternions because, honestly, I just really dislike Euler angles. The power
+                        of this quaternion controller in conjunction with ORCA is shown in the following video. The
+                        emergent behaviour shown here is just so exciting to me. The only inputs to the drones are that
+                        the large drone wants to stay as close to a waypoint on the aircraft while the small drones are
+                        trying to get on the large drone's position. The resulting behaviour is just so exciting, the
+                        small drones circling each other (while not colliding), diving in between the hangar beams and
+                        then the large drone diving almost vertically to the ground. When the small drones provided
+                        space for each other to pull out of their respective dives at the end of the video, I knew this
+                        was a truly powerful algorithm. This looks like a budget Top Gun with drones.
+                    </p>
+
+                    <p>
+                        All the elements discussed previously were implemented in Unity. Below is a video showing the
+                        complete simulation. I chose to implement the simulation in the Unity High Definition Rendering
+                        Pipeline (HDRP). While this was a tremendous pain to get working correctly, the end result more
+                        than made up for that. One of the features made possible using the HDRP was the projection of
+                        the pictures taken by the drones onto the mesh of the aircraft. Besides this, HDRP has also come
+                        a long way in performance for VR and now runs smoothly on a laptop RTX 2080.
+                    </p>
+
+                    <p>
+                        Another function of the Unity simulation is headless running, where the simulation is run
+                        without rendering. This allowed us to investigate not just the performance of a single swarm
+                        configuration but to explore a large landscape of drone combinations:
+                    </p>
+
+                    <p>
+                        My experience working on this project
+                        Working on the simulation and the whole DSE has been an enjoyable experience. I learned a lot
+                        and it was fun to see the development of this project from start to finish. Below is more
+                        information about the whole project. Feel free to contact me for any more information.
+                    </p>
+
+                    <h2>Continuation and awards</h2>
+                    <p>
+
                     </p>
                 </div>
             </div>
