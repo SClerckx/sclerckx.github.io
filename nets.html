@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div> -->
+    <!-- End #mobile-menu-toggle -->
+    <!-- <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <a href="index.html">Back to the home page</a>
+        </ul>
+    </header> -->
+    <!-- End header -->
+
+    <div id="lead" style="background-image: url(../images/projects/nets/fishnet3d.png);">
+        <div id="lead-content">
+            <h1>Numerical Modelling of Fishing Nets</h1>
+            <h2>CSE Minor project</h2>
+            <a href="index.html" class="btn-rounded-white">Back to homepage</a>
+        </div>
+        <!-- End #lead-content -->
+
+        <!-- <div id="lead-overlay"></div> -->
+
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+            <!-- </div> -->
+            <!-- End #lead-down -->
+        </div>
+    </div>
+    <!-- End #lead -->
+    <div id="textbody">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h1>Summary</h1>
+                    <p>
+                        This was the final project for my minor in Computational Science and Engineering. During this
+                        project
+                        we developed a two-way non-linear cloth simulation, which was used to model the behaviour of
+                        fishing nets.
+                        The project was done in a team of 5 students, and I was responsible for the fluid simulation in
+                        OpenFOAM.
+                        <!-- <iframe src="https://drive.google.com/file/d/1SU0Ar0B0D7NPuwVxxALNMbVdCe-dGxTM/preview" width="100%" height="480" allow="autoplay"></iframe> -->
+                    <p>
+
+                    <p>
+                        We developed a very computationally efficient simulation, which was able to simulate a 3D
+                        fishing net with
+                        accurate correspondence to the literature. On the OpenFOAM side, I developed a new OpenFOAM
+                        application for converting
+                        the output from the cloth simulation to a mesh suitable for OpenFOAM and for then converting the
+                        fluid simulation results
+                        back into pressures exerted onto the net. In order to do this, I generalised an approach in the
+                        literature to work for
+                        arbitray net shapes while checking it still was identical in the simple case. Working on this
+                        project was a fun experience
+                        and I learned a lot about OpenFOAM, using this experience to provide OpenFOAM workshops at the
+                        Robotics Student Association.
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/nets/Cage 3d flowflied.png" class="image-width" style="width: 49%;" />
+                        <img src="images/projects/nets/fishnet3d.png" class="image-width" style="width: 49%;" />
+                    </div>
+                    <div>
+
+                    </div>
+                    <h1> More details </h1>
+
+                    <p>
+                        I will now discuss some interesting aspects of the work I did for this project. 
+                        I will begin by shortly discussing our literature study on porosity and the work
+                        of Chen et al. in 2016, which provided the basis for our approach. I will then describe how I
+                        generalized the panel case to take into account volume, surface, and direction. Next, I will
+                        explain how I parallelized the computations to improve performance, and how I later
+                        deparallelized and computed pressures. Finally, I will compare our results to those found in the
+                        literature.
+
+                    </p>
+
+                    <!-- 1. Nonlinear net solver. STL
+                    2. Modelling interaction with fluid
+                    3. Recreating the panel case:
+                        a. literature study: porosity
+                        b. Chen et al. 2016: basic idea + experimental comparison  
+                    4. Generalising the panel case:
+                        a. Volume
+                        b. Surface
+                        c. Direction
+                    5. Parallelizing
+                    6. Deparallelizing and computing pressures
+                    7. Correspondence with literature
+                
+                    Experience:
+                        First experience with OpenFOAM
+                        RSA Workshops
+                    -->
+
+                    <h2>Nonlinear net solver</h2>
+                    <p>
+                    </p>
+
+                    <h2>Simulating the net in a fluid</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Recreating a simple case from the literature</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Recreating a simple case from the literature</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Generalising the panel case</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Parallelizing</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Deparallelizing and computing pressures</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Correspondence with literature</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>Experience</h2>
+                    <p>
+
+                    </p>
+
+                    <h2>References</h2>
+                    <p>
+
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2022</span> Servaas Clerckx
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/" target="_blank"><i class="fa fa-github"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/" target="_blank"><i class="fa fa-stack-overflow"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/" target="_blank"><i class="fa fa-linkedin"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"
+                                    aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>

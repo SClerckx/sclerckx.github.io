@@ -194,8 +194,10 @@
 
                     <p>
                         This pathfinding does not take into account the possible collisions between the drones. This was
-                        an explicit choice in the design process, the collision avoidance system between the drones is
-                        responsible for conflict resolution.
+                        an explicit choice in the design process. Due to the time constraints of the project, it was chosen
+                        not to implement an integrated method such as Conflict Based Search (CBS). The collision avoidance system between the drones was 
+                        implemented as a separate system, which is purely responsible for conflict resolution. As discussed in the next section,
+                        this lead to great results.
                     </p>
 
                     <h2>Drone collision avoidance</h2>
@@ -211,9 +213,10 @@
                     <p>
                         The main advantage of ORCA is that it is entirely decentralized, so no communication is required
                         between the drones. The algorithm also scales very well with an increasing number of agents and
-                        is computationally cheap. The algorithm works with Velocity Obstacles which are forbidden
+                        is computationally cheap. The algorithm works with Velocity Obstacles (VO) which are forbidden
                         regions in the velocity space where the drones cannot place their relative velocities. In the
-                        pictures on the right, you can see them visualised in the simulation as cones. If you doubt
+                        pictures below, you can see those forbidden velocity spaces visualised in the simulation as cones. 
+                        If you doubt
                         whether this algorithm would work in real life, it has been experimentally validated in the
                         literature on real drones in real-time using just camera sensors (3-D Reciprocal Collision
                         Avoidance on Physical Quadrotor Helicopters with On-Board Sensing for Relative Positioning)
@@ -221,8 +224,7 @@
                         novel solutions to make the algorithm simpler to implement and computationally cheaper. The
                         algorithm as implemented can make the drones avoid collisions both with complex stationary
                         objects and with other drones. The static object avoidance surprised me with its power in
-                        letting the drone navigate tight spaces, as shown below or in the full hangar, as is shown in
-                        the next section.
+                        letting the drone navigate tight spaces, as is shown in the next section.
                     </p>
 
                     <div class="image-container">
@@ -243,7 +245,7 @@
 
                     <h2>Drone quaternion control</h2>
                     <p>
-                        To control the drones, I implemented a heap of PID controllers where the most interesting thing
+                        To control the drones, I implemented a bunch of PID controllers where the most interesting thing
                         is the attitude controller. The drones are modelled down to the forces and torques acting on
                         them. To control the attitude of the drone on the torque level, I implemented a quaternion
                         controller. I chose quaternions because, honestly, I just really dislike Euler angles. The power
