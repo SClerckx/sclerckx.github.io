@@ -2,5 +2,11 @@
     "files.associations": {
         "geometricCalc.C": "cpp",
         "fishingNets.C": "cpp"
-    }
+    },
+    "grammarly.selectors": [
+        {
+            "language": "html",
+            "scheme": "file"
+        }
+    ]
 }
