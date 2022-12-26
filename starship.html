@@ -76,25 +76,177 @@
         <div class="container">
             <div class="row">
                 <div>
-                    <h1>Work in progress</h1>
-                    <p>
-                        This page is still under construction. Please come back in a few days. In the meantime
-                        you can check out my other projects.
-                    <p>
+                    <h1>Summary</h1>
 
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a href="nets.html">Numerical modelling of fishing nets</a>
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="swarm.html">Swarm of drones for aircraft inspection</a>
-                        </div>
-                        <!-- Back to homepage -->
-                        <div class="col-sm-4">
-                            <a href="index.html">Back to the home page</a>
-                        </div>
+                    <h1>More details</h1>
+
+                    <h2>Motivation and inspiration.</h2>
+
+                    <p>
+                        The inspiration for this project came in 2020 when I watched the Starship SN8 flight with some
+                        friends. The belly flop and subsequent landing of SN10 left a lasting impression on me, as it
+                        seemed like something straight out of science fiction [1]. From that moment, I knew I wanted to
+                        replicate those maneuvers in some way.
+                    </p>
+                    <p>
+                        It seems that others had the same idea after watching the Starship flight. Soon after the SN8
+                        flight, Nicholas Rehm built a manually controlled, thrust vector replica [2], and around the
+                        same time, Joe Barnard was working on his sprite test vehicle [3] to demonstrate fully
+                        autonomous thrust vector control for his Falcon-9-style landing model rockets.
+                    </p>
+                    <p>
+                        Inspired by these projects, my friend Lennart Bult and I decided to build our own autonomous
+                        Starship replica drone. Our goal was to replicate the flight profile of a Starship test flight,
+                        including the belly flop and landing, completely autonomously.
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/starship/sn10.png" class="image-width" style="width: 20%;" />
+                        <img src="images/projects/starship/sprite.png" class="image-width" style="width: 49%;" />
+                        <img src="images/projects/starship/nicholas.png" class="image-width" style="width: 20%;" />
                     </div>
+
+                    <h2>Preliminary design.</h2>
+
+                    <p>
+                        We based a lot of our preliminary design on the drone designed by Nicholas Rehm. His drone
+                        used a counterrotating propeller setup, with one gimbal for each propeller. A 
+                        counterrotating setup is preferred because this removes all the adverse jaw generated from
+                        the acceleration of the propellors and the conservation of angular momentum. 
+                        This setup allowes
+                        for thrust vectoring in the two horizontal axes and for controlling the jaw by diferentially
+                        accelerating the two propellers.
+                        The only change we made to his basic design was  
+                        going a slightly more powerfull propulsion system as we wanted to be able to 
+                        have the option of including more compute power on the drone later on for the autonomous
+                        flights.
+                    </p>
+
+                    <p>
+                        In order to start our design iteration we wanted to have a good idea of the performance of the
+                        drone. For this we used the ecalc tool [4] to calculate the performance of the drone. This tool
+                        was invaluable for rapid prototyping of the drone design. In retrospect, the predictions of
+                        this tool were surprisingly accurate, even accounting for all the uncertainties.
+                    </p>
+
+                    <p>
+                        One of the things that we wanted to verify first was the thrust we could expect from our 
+                        Counterrotating propeller setup. We used the ecalc tool to calculate the thrust we could expect
+                        from our propellers and motors. However, ecalc does not take into account interactions between
+                        the propellers. We therefore went straight to the test bench and measured the thrust of our system.
+                        The thrust we measured at full throttle was 1.2 kg which was better than what we expected from 
+                        reading rc groups forums. We also measured the thrust of the propellers individually and found
+                        that the counterrotating setup only incurred a 15% loss in thrust compared to putting the same
+                        propellers in parallel. 
+                    </p>
+
+                    <p>
+                        This higher than expected thrust was a good thing because we overshot the mass budget 
+                        for the rest of the drone by about 20%. These changes lukicly mostly cancelled each other out 
+                        and only the flight time of the drone was slightly shorter. We measured it to eventually be
+                        about 4 minutes in pure hover. Below is a list of the components we used for the drone 
+                        for reference:
+                    </p>
+
                     
+                    <table style="margin: 0 auto; font-size: larger; padding: 30px 0;" >
+                        <tr>
+                          <th>Part</th>
+                          <th>Description</th>
+                          <th>Amount</th>
+                          <th>Cost</th>
+                        </tr>
+                        <tr>
+                          <td>Props</td>
+                          <td>2x 6040 Carbon Fiber</td>
+                          <td>2</td>
+                          <td>$10.00</td>
+                        </tr>
+                        <tr>
+                          <td>Motors</td>
+                          <td>2x XING-E 2306 2450kv</td>
+                          <td>2</td>
+                          <td>$50.00</td>
+                        </tr>
+                        <tr>
+                          <td>ESC</td>
+                          <td>2x Turningy Plush-32 40A with BEC</td>
+                          <td>2</td>
+                          <td>$30.00</td>
+                        </tr>
+                        <tr>
+                          <td>Battery</td>
+                          <td>1x Turningy 4S 2200mAh 60C</td>
+                          <td>1</td>
+                          <td>$20.00</td>
+                        </tr>
+                      </table>
+                    <!-- Part list:
+                    Props: 2x 6040 Carbon Fiber
+                    Motors: 2x XING-E 2306 2450kv
+                    ESC: 2x Turningy Plush-32 40A with BEC
+                    Battery: 1x Turningy 4S 2200mAh 60C -->
+
+
+
+
+
+                    <div class="image-container">
+                        <img src="images/projects/starship/ecalc.png" class="image-width" style="width: 49%;" />
+                        <img src="images/projects/starship/thrust.png" class="image-width" style="width: 40%;" />
+                    </div>
+
+                    <h2>Flight control and electronics.</h2>
+
+                    Inner loop control: Drehm flight.
+                    List: microcontroller: Teensy 4.1 for refresh rate,
+                    IMU: MPU9250 for magnetometer, upgraded to BNO055
+                    Sensor fusion: quaternion Madgwick filter,
+                    Control: PID controllers.
+                    Communication: NRF24L01+ 2.4GHz for telemetry and control.
+                    Manual control: FrSky Taranis X8R.
+
+                    Worked on
+
+                    Saw that this was good enough for stabilisation with human drift correction.
+
+                    <h2>Positioning system.</h2>
+
+                    Purely inertial system not good enough for purely autonomous flight.
+                    Outside use inertial + gps. Inside use
+                    external tracking system.
+
+                    Not metrology grade but good enough for drift correction.
+
+                    <div class="image-container">
+                        <img src="images/projects/starship/object_tracking.png" class="image-width"
+                            style="width: 30%;" />
+                        <img src="images/projects/starship/pointcloudcropped.png" class="image-width"
+                            style="width: 30%;" />
+                    </div>
+
+                    <h2>Further work.</h2>
+
+                    Outer loop control
+
+                    Aerodynamics: belly flop
+
+                    Look at integrating inside-out tracking system: landing
+
+                    Super heavy
+
+                    Catching arm
+
+
+
+                    <div class="image-container">
+                        <img src="images/projects/starship/actuation.gif" class="image-width"
+                            style="width: 19.5%; height: 75%;" />
+                        <img src="images/projects/starship/StarshipAero3.JPG" class="image-width"
+                            style="width: 50%; height: 20%;" />
+                    </div>
+
+
                 </div>
             </div>
         </div>

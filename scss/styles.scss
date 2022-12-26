@@ -1134,6 +1134,32 @@ footer {
         justify-content: space-between; // distribute items evenly
     }
 
+    .table-custom {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 20px;
+        font-size: 0.9em;
+        color: $text;
+        border: 1px solid $border;
+
+        th {
+            background: $heading;
+            color: #fff;
+            padding: 10px 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid $border;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+    }
+
     .figure {
         float: right;
       }
