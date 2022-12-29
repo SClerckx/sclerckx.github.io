@@ -2,6 +2,15 @@
 <html class="no-js" lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY15CW11JV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QY15CW11JV');
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,7 +64,7 @@
                     <h1>Summary</h1>
                     <p>
                         The numerical modelling of fishing nets
-                         was the final project for my minor in Computational Science and Engineering. During this
+                        was the final project for my minor in Computational Science and Engineering. During this
                         project,
                         we developed a two-way non-linear cloth simulation, which was used to model the behaviour of
                         fishing nets.
@@ -90,9 +99,9 @@
 
                     <p>
                         Here, I will discuss some interesting aspects of the work I did for this project.
-                        I will begin by briefly discussing the net simulation side of the simulation to 
+                        I will begin by briefly discussing the net simulation side of the simulation to
                         give a background on that part.
-                         After this, I will focus on the fluid simulation, starting with
+                        After this, I will focus on the fluid simulation, starting with
                         our literature study on porosity and the work
                         of Chen et al. in 2016 [1], which provided the basis for our approach. I will then describe how
                         I
@@ -180,9 +189,11 @@
 
                     <h2>Generalising the panel case</h2>
                     <p>
-                        For the panel case to be generalised, I needed to find a way to compute the Darcy-Forchheimer coefficients for 
+                        For the panel case to be generalised, I needed to find a way to compute the Darcy-Forchheimer
+                        coefficients for
                         each porous region representing a single panel.
-                        This was done by generalising the coefficient calculation to arbitrary geometries, considering the panel's 
+                        This was done by generalising the coefficient calculation to arbitrary geometries, considering
+                        the panel's
                         volume, surface, and direction. The
                         volume and surface of the
                         porous region were computed by integration over the relevant parts over the mesh. Calculating
@@ -202,7 +213,8 @@
                         The projected surface area of the porous region is calculated by taking the dot product of the
                         normal vector of the panel and the normal vector of every cell face and then integrating this
                         over
-                        all the cell faces. The result is shown in the right image, where the black outline is the outline of
+                        all the cell faces. The result is shown in the right image, where the black outline is the
+                        outline of
                         the projected area using this method. The red areas represent a small error in calculating the
                         areas this way. These areas are counted twice in the final result. This is because
                         calculating
@@ -242,8 +254,8 @@
                         sensitive
                         to the mesh resolution, only varying by a few percent over a sixteen-fold resolution increase.
                         This is
-                        good news for the computational intensity of the method. These lift and drag coefficients also 
-                        correspond exactly with the same case's results from Chen et al. (2016) [1]. This 
+                        good news for the computational intensity of the method. These lift and drag coefficients also
+                        correspond exactly with the same case's results from Chen et al. (2016) [1]. This
                         correspondence shows
                         that
                         the method is working as intended.
@@ -251,32 +263,34 @@
 
                     <h2>Parallelizing and computational resources</h2>
                     <p>
-                        All of the above, including the solvers, had to be executed on our laptops, 
-                        meaning we quickly ran into performance and storage bottlenecks. 
-                         Because the simulations took
-                        too long to complete for iteration on the results, we decided to look into parallelizing the   
+                        All of the above, including the solvers, had to be executed on our laptops,
+                        meaning we quickly ran into performance and storage bottlenecks.
+                        Because the simulations took
+                        too long to complete for iteration on the results, we decided to look into parallelizing the
                         entire procedure. This was also surprisingly required for the prerprocessing and postprocessing
-                        of the results, which took almost as much computation as the fluid simulation itself. 
-                        Implementing the parallelization broke a lot of our approach in the last 
-                        weeks before the deadlines because of the large changes to mesh and file structures in the 
-                        OpenFOAM frontend. This meant that we had to reverse engineer a lot of the parallelization 
-                        performed by OpenFOAM and then refactor our solution. 
+                        of the results, which took almost as much computation as the fluid simulation itself.
+                        Implementing the parallelization broke a lot of our approach in the last
+                        weeks before the deadlines because of the large changes to mesh and file structures in the
+                        OpenFOAM frontend. This meant that we had to reverse engineer a lot of the parallelization
+                        performed by OpenFOAM and then refactor our solution.
                     </p>
-                    
+
                     <p>
-                        On top of this, the project was completed during COVID, which meant a purely online work environment. 
-                        The ensuing cocktail of gigantic file transfers, different program environments and operating 
-                        systems made the project a great lesson in flexibility and adaptability. 
+                        On top of this, the project was completed during COVID, which meant a purely online work
+                        environment.
+                        The ensuing cocktail of gigantic file transfers, different program environments and operating
+                        systems made the project a great lesson in flexibility and adaptability.
                     </p>
 
                     <h2>Correspondence with literature</h2>
                     <p>
                         Despite the above troubles, our results still corresponded very well with the literature.
-                        For example, the image below shows the simulation of a net configuration described 
+                        For example, the image below shows the simulation of a net configuration described
                         in the work of Tang et al.
-                        (2019) [4], where the Vertical Opening Ratio (VOR) describes how much the net opens under a 
+                        (2019) [4], where the Vertical Opening Ratio (VOR) describes how much the net opens under a
                         particular
-                        flow. In the figure on the right, it can be seen that the VOR, as simulated by our method, follows
+                        flow. In the figure on the right, it can be seen that the VOR, as simulated by our method,
+                        follows
                         a similar power law as obtained by Tang et al. (2019) [4].
                     </p>
 
@@ -288,11 +302,11 @@
                     <p>
                         Studying the convergence of the full net simulation, a slightly worrying trend was observed. The
                         figure below shows the drag coefficient and simulated velocities at several stations
-                        in the net as a function of the resolution of the mesh. It can be seen in this figure that slow 
-                        convergence to steady values is present. However, we could not increase the resolution of our 
+                        in the net as a function of the resolution of the mesh. It can be seen in this figure that slow
+                        convergence to steady values is present. However, we could not increase the resolution of our
                         simulation far enough to observe the convergence to the final values. This is in stark contrast
-                        to the simple panel case, which was not sensitive to the mesh resolution at all. 
-                    
+                        to the simple panel case, which was not sensitive to the mesh resolution at all.
+
                     </p>
 
                     <div class="image-container">
@@ -301,22 +315,25 @@
 
                     <p>
                         We hypothesized that this is because the net, in this case, was not a simple geometry.
-                        This means that increasing the mesh resolution can have nonlinear effects on the 
-                        flow. An example of a complex net configuration with effects like this 
+                        This means that increasing the mesh resolution can have nonlinear effects on the
+                        flow. An example of a complex net configuration with effects like this
                         would be the case of a net with a modest opening in the middle. At a certain low
-                        resolution, this opening would not be resolved anymore by the mesh, and this would lead to a drastically
-                        different flow field. 
+                        resolution, this opening would not be resolved anymore by the mesh, and this would lead to a
+                        drastically
+                        different flow field.
 
-                        However, as we observed, in simple cases it is possible to get very far with only 
+                        However, as we observed, in simple cases it is possible to get very far with only
                         simple simulation steps. In some instances, it was even observed that the pure cloth simulation
-                        without the fluid simulation in the loop could have significant predictive power. This was in situations
+                        without the fluid simulation in the loop could have significant predictive power. This was in
+                        situations
                         where the assumption of a steady uniform flow, as made by the cloth model, was valid.
                     </p>
-                    
+
 
                     <h2>My experience working on the project</h2>
                     <p>
-                        Working on this project was an outstanding experience; we had a great team and tutors. I had to pick
+                        Working on this project was an outstanding experience; we had a great team and tutors. I had to
+                        pick
                         up the usage and development for OpenFOAM in a short amount of time, together with all the
                         complications of running it with the windows subsystem for Linux in VS Code. After this project,
                         I went on to use OpenFOAM in other projects and taught it to others at the RSA
@@ -325,14 +342,17 @@
 
                     <h2>References</h2>
                     <ul class="reference-list">
-                        <li>[1] H. Chen, E.D. Christensen, ”Investigations on the Porous Resistance Coefficients for Fishing Net Structures”, Journal of Fluids and
-                        Structures, Vol. 65, pp. 76-107 (2016)</li>
+                        <li>[1] H. Chen, E.D. Christensen, ”Investigations on the Porous Resistance Coefficients for
+                            Fishing Net Structures”, Journal of Fluids and
+                            Structures, Vol. 65, pp. 76-107 (2016)</li>
                         <li>[2] H. Provot, ”Deformation Constraints in a Mass-Spring Model
-                            to Describe Rigid Cloth Behaviour”, Proceedings of Graphics Interface, pp. 147-154, https://doi.org/10.20380/GI1995.17.
+                            to Describe Rigid Cloth Behaviour”, Proceedings of Graphics Interface, pp. 147-154,
+                            https://doi.org/10.20380/GI1995.17.
                             (1995)
-                            </li>
-                        <li>[3] OpenCFD Ltd, "The Darcy-Forchheimer Equation" https://openfoamwiki.net/index.php/DarcyForchheimer</li>
-                        <li>[4]  M.F. Tang, G.H. Dong, T.J. Xu, Y.P. Zhao, ”Numerical Simulation
+                        </li>
+                        <li>[3] OpenCFD Ltd, "The Darcy-Forchheimer Equation"
+                            https://openfoamwiki.net/index.php/DarcyForchheimer</li>
+                        <li>[4] M.F. Tang, G.H. Dong, T.J. Xu, Y.P. Zhao, ”Numerical Simulation
                             of the Drag Force on the Trawl Net”, Turkish Journal of Fisheries
                             and Aquatic Sciences, Vol. 17, pp. 1219-1230 (2017) </li>
                     </ul>

@@ -2,6 +2,15 @@
 <html class="no-js" lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY15CW11JV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QY15CW11JV');
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -196,9 +205,12 @@
 
                     <p>
                         This pathfinding does not take into account the possible collisions between the drones. This was
-                        an explicit choice in the design process. Due to the time constraints of the project, it was chosen
-                        not to implement an integrated method such as Conflict Based Search (CBS). The collision avoidance system between the drones was 
-                        implemented as a separate system, which is purely responsible for conflict resolution. As discussed in the next section,
+                        an explicit choice in the design process. Due to the time constraints of the project, it was
+                        chosen
+                        not to implement an integrated method such as Conflict Based Search (CBS). The collision
+                        avoidance system between the drones was
+                        implemented as a separate system, which is purely responsible for conflict resolution. As
+                        discussed in the next section,
                         this lead to great results.
                     </p>
 
@@ -217,7 +229,8 @@
                         between the drones. The algorithm also scales very well with an increasing number of agents and
                         is computationally cheap. The algorithm works with Velocity Obstacles (VO) which are forbidden
                         regions in the velocity space where the drones cannot place their relative velocities. In the
-                        pictures below, you can see those forbidden velocity spaces visualised in the simulation as cones. 
+                        pictures below, you can see those forbidden velocity spaces visualised in the simulation as
+                        cones.
                         If you doubt
                         whether this algorithm would work in real life, it has been experimentally validated in the
                         literature on real drones in real-time using just camera sensors (3-D Reciprocal Collision
@@ -298,18 +311,18 @@
 
                     <h2>My experience working on this project</h2>
                     <p>
-                        Working on the simulation and the DSE as a whole has been an extremely enjoyable experience. 
-                        I am very grateful for our amazing team and mentors. 
-                        It was also very motivating to recieve so much enthousiasm and recognition for the project. 
+                        Working on the simulation and the DSE as a whole has been an extremely enjoyable experience.
+                        I am very grateful for our amazing team and mentors.
+                        It was also very motivating to recieve so much enthousiasm and recognition for the project.
                         Below are some pictures from our presentation
                         at the Development Center for Maintenance of Composites (DCMC) and the NLF award ceremony.
                     <p>
 
-                        <div class="image-container" style="width: 95%;">
-                            <img src="images/projects/swarm/dcmc.jpg" class="image-width" style="width: 50%;" />
-                            <img src="images/projects/swarm/win.jpg" class="image-width" style="width: 45%;" />
-                        </div>
-    
+                    <div class="image-container" style="width: 95%;">
+                        <img src="images/projects/swarm/dcmc.jpg" class="image-width" style="width: 50%;" />
+                        <img src="images/projects/swarm/win.jpg" class="image-width" style="width: 45%;" />
+                    </div>
+
                 </div>
             </div>
         </div>
