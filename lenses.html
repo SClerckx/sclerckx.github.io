@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY15CW11JV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QY15CW11JV');
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Swarm of Inspection Drones - My Portfolio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div> -->
+    <!-- End #mobile-menu-toggle -->
+    <!-- <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <a href="index.html">Back to the home page</a>
+        </ul>
+    </header> -->
+    <!-- End header -->
+
+    <div id="lead" style="background-image: url(../images/projects/lenses/spacebunnies.png);">
+        <div id="lead-content">
+            <h1>Computer Graphics Path Tracing</h1>
+            <h2>Studying reality capture lenses</h2>
+            <a href="index.html" class="btn-rounded-white">Back to homepage</a>
+        </div>
+        <!-- End #lead-content -->
+
+        <!-- <div id="lead-overlay"></div> -->
+
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+            <!-- </div> -->
+            <!-- End #lead-down -->
+        </div>
+    </div>
+    <!-- End #lead -->
+    <div id="textbody">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h1>Introduction</h1>
+                    <p>
+                        At Bladesense we push the boundaries of reality capture in order to apply it in the aerospace industry. 
+                        The current state of the art in reality capture is moving ever more in the direction of full light field reconstruction. 
+                        This reconstruction is being approached from multiple angles: on the sensor side with virtual reality cameras 
+                        and on the software side with inverse rendering algorithms such as (neural) radiance fields and optimization-based inverse path tracers. 
+                        I think the future of reality capture is in virtual reality cameras with multiple complicated wide-angle lenses like these:
+                    </p>
+                    
+                    <div class="image-container">
+                        <img src="images/projects/lenses/insta360.png" class="image-width" style="width: 20%;" />
+                        <img src="images/projects/lenses/canonexternal.png" class="image-width" style="width: 45%;" />
+                    </div>
+
+                    <p>
+                        Because of their larger coverage, these devices allow for dramatically increased capture ergonomics. 
+                        However, associated with this advantage is one main problem which is that they tend to create a lot of singularities in the traditional projective-geometry based reconstruction pipelines. 
+                        This makes it obvious that in the future we will need better lens and light transportation modelling to reconstruct our world on the next level.
+
+                        To be at the forefront of this trend, I first wanted expose myself to the forward rendering part of this equation in order to understand what our models are capable of and where they fail, so I enrolled in the ETH Advanced Computer Graphics course. 
+                        Here are some of the coolest renders I made in my own rendering engine using what I learned:
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/lenses/spacebunnies.png" class="image-width" style="width: 62.5%;" />
+                        <img src="images/projects/lenses/lensspecular.png" class="image-width" style="width: 37.5%;" />
+                    </div>
+                    <div class="image-container">
+                        <img src="images/projects/lenses/volumetric.png" class="image-width" style="width: 45%;" />
+                        
+                        <img src="images/projects/lenses/clockpmap.png" class="image-width" style="width: 55%;" />
+                    </div>
+
+                    <h1>Lens Modelling</h1>
+                    <p>
+                        Below I show a set of images produced by the dual fisheye lens reality capture camera by Canon. 
+                        Interestingly, these images are actually constructed by focusing two lenses on the same homogeneous image sensor.
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/lenses/canonimage.png" class="image-width" style="width: 55%;" />
+                        <img src="images/projects/lenses/canonlens.png" class="image-width" style="width: 45%;" />
+                    </div>
+
+                    <p></p>
+
+                    <div class="image-container">
+                        
+                    </div>
+
+                    <p>
+                        If we want any hope of using these images for accurate reconstruction we need a better lens model that accounts for a large range of optical effects (without reducing to the pinhole model as that introduces either unacceptable information loss or accuracy loss). 
+                        In my computer graphics project I fully modelled a lens and aperture system, including internal reflections.
+                        The below image shows the sensor-to-exit path for a quad thick-lens and single aperture assembly:
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/lenses/lenspath.png" class="image-width" style="width: 75%;" />
+                    </div>
+
+                    <p>
+                        This results in the full images as shown below which showcase two scenes with high dynamic range and specular effects.
+                        These are qualitatively similar to the canon images and show 
+                        organic vignetting, distortion, depth of field, aperture effects (customisable, here a pentagon) and specular inter-lens effects (not all of them sampled as efficiently, however).
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/lenses/lensnonspecular.png" class="image-width" style="width: 50%;" />
+                        <img src="images/projects/lenses/lensspecular.png" class="image-width" style="width: 50%;" />
+                    </div>
+
+                    <p>
+                        One place where I did have to cheat is on the aperture diffraction effects. These effects can’t be rendered using traditional path tracers as the quantum effects that cause them are not modelled by the assumptions of geometric optics. 
+                        I made a simple model of these effects by convolving my before-aperture radiance images with a unit impulse lens-flare which is generated by <a href="https://github.com/beatreichenbach/realflare">realflare</a>. 
+                        Convolving images in this way rests on another linearity assumption which is actually satisfied by <a href="https://resources.mpi-inf.mpg.de/lensflareRendering/">Fraunhofer’s diffraction in the far-field limit</a>. 
+                        However, this assumption disconnects the aperture diffraction effects from the rest of the lens system and hence distortions by the final two lenses are not present on the flares as can be seen below.
+                    </p>
+
+                    <div class="image-container">
+                        <img src="images/projects/lenses/diffraction.jpg" class="image-width" style="width: 50%;" />
+                    </div>
+
+                    <h1>Light Transportation</h1>
+
+                    With my eye on future inverse rendering, I also dove into traditional light transportation modelling. The current computer graphics approaches
+                    bascially model this problem using the assumptions of <a href="https://pbr-book.org/4ed/Radiometry,_Spectra,_and_Color/Radiometry">geometric optics</a>. 
+                    Through a very long path with <a href="https://link.springer.com/chapter/10.1007/978-94-010-0227-1_20">lots of assumptions</a> this approach reduce the electromagnetic
+                    wave equations into the famous rendering equation as <a href="https://www.cg.tuwien.ac.at/courses/Rendering/VU/2021S">shown below</a>:
+                    
+                    <div class="image-container">
+                        <img src="images/projects/lenses/rendering2.png" class="image-width" style="width: 50%;" />
+                    </div>
+
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2022</span> Servaas Clerckx
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://www.linkedin.com/in/servaasclerckx/" target="_blank"><i
+                                    class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>
